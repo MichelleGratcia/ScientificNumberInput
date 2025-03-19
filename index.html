@@ -91,7 +91,7 @@
     <script>
         function validateInput() {
             let input = document.getElementById("scientificInput").value;
-            let scientificPattern = /^[+-]?\d+(\.\d+)?[Ee][+-]?\d+$/;
+            let scientificPattern = /^[+-]?\d*\.?\d+([eE][+-]?\d+)?$/;
             let resultElement = document.getElementById("result");
 
             if (scientificPattern.test(input)) {
