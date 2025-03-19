@@ -1,57 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scientific Number Accepter</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #F7CAC9, #92A8D1); /* Rose Quartz & Serenity */
             text-align: center;
-            margin: 50px;
         }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
         input {
+            width: 100%;
             padding: 10px;
-            width: 250px;
             font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
         }
+
+        input:focus {
+            border-color: #F7CAC9;
+        }
+
         button {
+            width: 100%;
             padding: 10px;
             font-size: 16px;
+            background: #F7CAC9;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
         }
+
+        button:hover {
+            background: #92A8D1;
+        }
+
         #result {
-            margin-top: 20px;
+            margin-top: 15px;
             font-weight: bold;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h2>Scientific Number Accepter</h2>
-    <p>Michelle Gratcia Sarah Sumayku (231011060030)</p>
-    <input type="text" id="scientificInput" placeholder="Contoh: 3.14e2">
-    <button onclick="validateInput()">Submit</button>
-    <p id="result"></p>
-
+    <div class="container">
+        <h2>Scientific Number Accepter</h2>
+        <p>Michelle Gratcia Sarah Sumayku (231011060030)</p>
+        <input type="text" id="scientificInput" placeholder="Input Number">
+        <button onclick="validateInput()">Submit</button>
+        <p id="result"></p>
+    </div>
+    
     <script>
         function validateInput() {
             let input = document.getElementById("scientificInput").value;
-            let scientificPattern = /^[+-]?\d*\.?\d+([eE][+-]?\d+)?$/;
+            let scientificPattern = /^[+-]?\d+(\.\d+)?[Ee][+-]?\d+$/;
+            let resultElement = document.getElementById("result");
 
             if (scientificPattern.test(input)) {
-                document.getElementById("result").innerText = "Valid Scientific Number!";
-                document.getElementById("result").style.color = "green";
-                document.getElementById("scientificInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-               validateInput();
-            }
-        });
-
+                resultElement.innerText = "✅ Valid Scientific Number!";
+                resultElement.style.color = "green";
             } else {
-                document.getElementById("result").innerText = "Invalid! Gunakan format notasi ilmiah.";
-                document.getElementById("result").style.color = "red";
+                resultElement.innerText = "❌ Invalid! it is not a Scientific Number";
+                resultElement.style.color = "red";
             }
+
+            // Tambahkan efek animasi muncul
+            resultElement.style.opacity = "0";
+            setTimeout(() => {
+                resultElement.style.opacity = "1";
+                resultElement.style.transition = "opacity 0.5s";
+            }, 100);
         }
     </script>
 </body>
