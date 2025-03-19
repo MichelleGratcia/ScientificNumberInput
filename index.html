@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Number Accepter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Scientific Number Accepter</h2>
+    <p>Masukkan angka dalam format ilmiah (misal: 1.23e4)</p>
+    <input type="text" id="scientificInput" placeholder="Contoh: 3.14e2">
+    <button onclick="validateInput()">Submit</button>
+    <p id="result"></p>
+
+    <script>
+        function validateInput() {
+            let input = document.getElementById("scientificInput").value;
+            let scientificPattern = /^[+-]?\d*\.?\d+([eE][+-]?\d+)?$/;
+
+            if (scientificPattern.test(input)) {
+                document.getElementById("result").innerText = "Valid Scientific Number!";
+                document.getElementById("result").style.color = "green";
+                document.getElementById("scientificInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+               validateInput();
+            }
+        });
+
+            } else {
+                document.getElementById("result").innerText = "Invalid! Gunakan format notasi ilmiah.";
+                document.getElementById("result").style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
