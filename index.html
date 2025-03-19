@@ -90,23 +90,26 @@
     
     <script>
         function validateInput() {
-            let input = document.getElementById("scientificInput").value;
-            let scientificPattern = /^[+-]?\d*\.?\d+([eE][+-]?\d+)?$/;
-            let resultElement = document.getElementById("result");
+    let input = document.getElementById("scientificInput").value.trim();
+    let scientificPattern = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+    let resultElement = document.getElementById("result");
 
-            if (scientificPattern.test(input)) {
-                resultElement.innerText = "✅ Valid Scientific Number!";
-                resultElement.style.color = "green";
-            } else {
-                resultElement.innerText = "❌ Invalid! it is not a Scientific Number";
-                resultElement.style.color = "red";
-            }
+    if (input === "") {
+        resultElement.innerText = "⚠️ Input cannot be empty!";
+        resultElement.style.color = "orange";
+    } else if (scientificPattern.test(input)) {
+        resultElement.innerText = "✅ Valid Scientific Number!";
+        resultElement.style.color = "green";
+    } else {
+        resultElement.innerText = "❌ Invalid! It is not a Scientific Number.";
+        resultElement.style.color = "red";
+    }
 
             // Tambahkan efek animasi muncul
             resultElement.style.opacity = "0";
             setTimeout(() => {
                 resultElement.style.opacity = "1";
-                resultElement.style.transition = "opacity 0.5s";
+                resultElement.style.transition = "opacity 0.5s ease-in-out";
             }, 100);
         }
     </script>
